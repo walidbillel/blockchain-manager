@@ -1,6 +1,8 @@
 const Blockchain = require('./blockchain');
 
-const bitCoin = new Blockchain()
+const bitCoin = new Blockchain();
+
+// console.log(bitCoin)
 
 const previousBlockHash = '05das5das5d5asd5';
 const currentBlockData = [
@@ -21,8 +23,16 @@ const currentBlockData = [
     },
 ];
 
-console.log(bitCoin.hashBlock(previousBlockHash, currentBlockData, 8893));
+// bitCoin.createNewBlock(14, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3');
 
+// bitCoin.createNewBlock(20, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3');
 
+// bitCoin.createNewTransaction(400, "55454ds6a4d54a6w", "6484asd84q9d4qwds3d1q");
 
-// console.log(bitCoin.hashBlock("dsadasdasdasd", 222, "555555555555555555"))
+bitCoin.createNewTransaction(100, "55454ds6a4d54a6w", "6484asd84q9d4qwds3d1q");
+
+// bitCoin.createNewBlock(20, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3');
+
+// console.log(bitCoin);
+
+console.log(bitCoin.proofOfWork(previousBlockHash, currentBlockData))
