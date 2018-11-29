@@ -17,12 +17,14 @@ function Blockchain() {
 Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) {
     // creating a new block object
     const newBlock = {
+
         index: this.chain.length + 1,
         timeStamp: Date.now(),
         transactions: this.pendingTransactions,
         nonce: nonce,
         hash: hash,
         previousBlockHash: previousBlockHash
+
     };
 
     // Clearing out the transactions for the next block
@@ -36,13 +38,17 @@ Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) 
 }
 
 // prototype function for returning the last block
-Blockchain.prototype.returnLastBlock = function () {
+Blockchain.prototype.getLastBlock = function () {
+    debugger;
+    console.log(this.chain[this.chain.length - 1])
+
     return this.chain[this.chain.length - 1];
+
 }
 
 // prototype function for creating a new transaction
 Blockchain.prototype.createNewTransaction = function (amount, sender, recipient) {
-    
+
     // Create a transaction object 
     const newTransaction = {
         amount: amount,
@@ -52,14 +58,14 @@ Blockchain.prototype.createNewTransaction = function (amount, sender, recipient)
 
     // Pushing the new transaction created to the transactions
     this.pendingTransactions.push(newTransaction);
-    
-    console.log(this.returnLastBlock()['index'] + 1)
-    return this.returnLastBlock()['index'] + 1;
+
+    // console.log(this.getLastBlock()['index'] + 1)
+    return this.getLastBlock()['index'] + 1;
 }
 
 // prototype function for hashing a block by concatenating 3 params into a string and the hashing the string
-Blockchain.prototype.hashBlock = function(previousBlockHash, currentBlockData, nonce) {
-   
+Blockchain.prototype.hashBlock = function (previousBlockHash, currentBlockData, nonce) {
+
     // Concatenate the params into a single string
     const dataAsString = previousBlockHash + nonce.toString() + JSON.stringify(currentBlockData);
     // Hashing the string created using SHA256 npm
@@ -71,7 +77,7 @@ Blockchain.prototype.hashBlock = function(previousBlockHash, currentBlockData, n
 
 
 // Proof of Work function to validate the blocks
-Blockchain.prototype.proofOfWork = function(previousBlockHash, currentBlockData) {
+Blockchain.prototype.proofOfWork = function (previousBlockHash, currentBlockData) {
 
     // We need to find a hash that starts with 0000
     // We will change our nonce everytime and run the hashBlock function 
@@ -84,8 +90,8 @@ Blockchain.prototype.proofOfWork = function(previousBlockHash, currentBlockData)
     while (hash.substring(0, 4) !== "0000") {
         nonce++;
         hash = this.hashBlock(previousBlockHash, currentBlockData, nonce);
-        console.log(hash)
-    } 
+
+    }
 
     return nonce;
 }

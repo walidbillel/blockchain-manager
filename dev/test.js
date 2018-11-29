@@ -29,10 +29,14 @@ const currentBlockData = [
 
 // bitCoin.createNewTransaction(400, "55454ds6a4d54a6w", "6484asd84q9d4qwds3d1q");
 
-bitCoin.createNewTransaction(100, "55454ds6a4d54a6w", "6484asd84q9d4qwds3d1q");
+// bitCoin.createNewTransaction(100, "55454ds6a4d54a6w", "6484asd84q9d4qwds3d1q");
 
 // bitCoin.createNewBlock(20, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3');
 
 // console.log(bitCoin);
 
-console.log(bitCoin.proofOfWork(previousBlockHash, currentBlockData))
+// console.log(bitCoin.proofOfWork(previousBlockHash, currentBlockData));
+
+// bitCoin.createNewBlock(77, "ssfdsfds", "qwdqwdqwd");
+// bitCoin.getLastBlock()
+
