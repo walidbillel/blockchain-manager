@@ -9,12 +9,13 @@ function Blockchain() {
     this.chain = [];
     this.pendingTransactions = [];
 
-    // Generting Genesis Block
+    // Generting The Genesis Block
     this.createNewBlock(1000, '1', '0');
 }
 
 // prototype function for creating a new block
 Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) {
+
     // creating a new block object
     const newBlock = {
 
@@ -39,8 +40,6 @@ Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) 
 
 // prototype function for returning the last block
 Blockchain.prototype.getLastBlock = function () {
-    debugger;
-    console.log(this.chain[this.chain.length - 1])
 
     return this.chain[this.chain.length - 1];
 

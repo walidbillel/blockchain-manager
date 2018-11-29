@@ -49,12 +49,14 @@ app.get("/mine", function (req, res) {
     const currentBlockHash = bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce)
     
      // Creating a new Block to mine the previous one 
-    const newBlock = bitcoin.createNewBlock(nonce, previousBlockHash, currentBlockHash);
+    // const newBlock = bitcoin.createNewBlock(nonce, previousBlockHash, currentBlockHash);
 
     res.json({
-        data: currentBlockData,
+        currentBlockData: currentBlockData,
         nonce: nonce, 
         hash: currentBlockHash,
+        previousBlockHash: previousBlockHash,
+        lastBlock: lastBlock,
         // newBlock: newBlock
     });
 
