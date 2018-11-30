@@ -25,7 +25,10 @@ const currentBlockData = [
 
 // bitCoin.createNewBlock(14, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3');
 console.log(bitCoin.createNewBlock(14, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3'));
-
+bitCoin.createNewTransaction(400, "55454ds6a4d54a6w", "6484asd84q9d4qwds3d1q");
+console.log(bitCoin.createNewBlock(14, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3'));
+bitCoin.createNewTransaction(400, "55454ds6a4d54a6w", "6484asd84q9d4qwds3d1q");
+console.log(bitCoin.createNewBlock(14, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3'));
 console.log(bitCoin)
 
 
@@ -42,5 +45,5 @@ console.log(bitCoin)
 // console.log(bitCoin.proofOfWork(previousBlockHash, currentBlockData));
 
 // bitCoin.createNewBlock(77, "ssfdsfds", "qwdqwdqwd");
-// bitCoin.getLastBlock()
+console.log(bitCoin.getLastBlock())
 
