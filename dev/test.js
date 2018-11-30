@@ -24,6 +24,10 @@ const currentBlockData = [
 ];
 
 // bitCoin.createNewBlock(14, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3');
+console.log(bitCoin.createNewBlock(14, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3'));
+
+console.log(bitCoin)
+
 
 // bitCoin.createNewBlock(20, 'asfas5f5asfas45f45a', 'asfasfjakhkew5a3');
 

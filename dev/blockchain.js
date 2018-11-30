@@ -16,6 +16,7 @@ function Blockchain() {
 // prototype function for creating a new block
 Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) {
 
+    
     // creating a new block object
     const newBlock = {
 
@@ -27,6 +28,8 @@ Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) 
         previousBlockHash: previousBlockHash
 
     };
+
+    // console.log(newBlock)
 
     // Clearing out the transactions for the next block
     this.pendingTransactions = [];
