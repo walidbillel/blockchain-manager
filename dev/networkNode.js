@@ -1,11 +1,11 @@
 
-
+// Setting up the servers
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const uuid = require('uuid/v1');
 const Blockchain = require('./blockchain');
-const PORT = 3000;
+const PORT = process.argv[2];
 const nodeAddress = uuid().split('-').join('');
 const bitcoin = new Blockchain();
 
@@ -19,7 +19,7 @@ app.get("/blockchain", function (req, res) {
     console.log('test')
     // Sending the bitcoin
     res.send(bitcoin);
-
+    console.log(nodeAddress)
 });
 
 // Endpoint to create a new transaction
@@ -36,7 +36,7 @@ app.get("/mine", function (req, res) {
     // To mine a block we need to create a new block
     // We need to find our params
     // Last Block cacascasc
-    // console.log('test2')
+    console.log('test2')
 
     const lastBlock = bitcoin.getLastBlock();
 
@@ -55,6 +55,11 @@ app.get("/mine", function (req, res) {
     // Claculating the Hash for the new block
     const blockHash = bitcoin.hashBlock(previousBlockHash, currentBlockData, nonce);
 
+
+    // Sending Rewarding Bitcoin to the Node who mined the block
+    bitcoin.createNewTransaction(15, "00", nodeAddress);
+
+    
     // Creating a new Block to mine the previous one 
     const newBlock = bitcoin.createNewBlock(nonce, previousBlockHash, blockHash);
     // console.log(newBlock)
