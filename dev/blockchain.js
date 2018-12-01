@@ -1,4 +1,5 @@
 // Sha256 npm For Hashing
+
 const sha256 = require("sha256");
 
 
@@ -9,14 +10,14 @@ function Blockchain() {
     this.chain = [];
     this.pendingTransactions = [];
 
-    // Generting The Genesis Block
+    // Generting The Genesis Block (the first block in the chain)
     this.createNewBlock(1000, '1', '0');
 }
 
 // prototype function for creating a new block
 Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) {
 
-    
+
     // creating a new block object
     const newBlock = {
 
@@ -44,6 +45,7 @@ Blockchain.prototype.createNewBlock = function (nonce, previousBlockHash, hash) 
 // prototype function for returning the last block
 Blockchain.prototype.getLastBlock = function () {
 
+    // returning the last block to retreive the previous hash and some data
     return this.chain[this.chain.length - 1];
 
 }
@@ -51,17 +53,18 @@ Blockchain.prototype.getLastBlock = function () {
 // prototype function for creating a new transaction
 Blockchain.prototype.createNewTransaction = function (amount, sender, recipient) {
 
-    // Create a transaction object 
+    // Create a new transaction object 
     const newTransaction = {
         amount: amount,
         sender: sender,
         recipient: recipient
     };
 
-    // Pushing the new transaction created to the transactions
+    // Pushing the new transaction created to the pending transactions
     this.pendingTransactions.push(newTransaction);
 
     // console.log(this.getLastBlock()['index'] + 1)
+    // Returning the index where the transactions will be found
     return this.getLastBlock()['index'] + 1;
 }
 
@@ -73,7 +76,7 @@ Blockchain.prototype.hashBlock = function (previousBlockHash, currentBlockData, 
     // Hashing the string created using SHA256 npm
     const hash = sha256(dataAsString);
 
-    // Returning the hash
+    // Returning the hash that will be used to create the new hash
     return hash;
 }
 
@@ -95,6 +98,7 @@ Blockchain.prototype.proofOfWork = function (previousBlockHash, currentBlockData
 
     }
 
+    // Return the nonce that will be used to create a new block
     return nonce;
 }
 
