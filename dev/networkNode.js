@@ -77,7 +77,7 @@ app.get("/mine", function (req, res) {
 });
 
 // Register and Broadcast the node to the entire network
-app.post('/register-and-broadcast-node', function(req, res){
+app.post('/register-and-broadcast-node', function(req, res){ 
     // The new Node url 
     const newNodeUrl = req.body.newNodeUrl;
     // Pushing the new Node to the networkNodes if it's not there
