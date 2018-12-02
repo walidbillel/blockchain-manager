@@ -1,7 +1,7 @@
 // Sha256 npm For Hashing
 
 const sha256 = require("sha256");
-
+const currentNodeUrl = process.argv[3];
 
 // Building the Blockchain Constructor Function
 function Blockchain() {
@@ -9,7 +9,10 @@ function Blockchain() {
 
     this.chain = [];
     this.pendingTransactions = [];
-
+    // The current url the blockchain is on
+    this.currentNodeUrl = currentNodeUrl;
+    // All the nodes in the blockchain
+    this.networkNodes = [];
     // Generting The Genesis Block (the first block in the chain)
     this.createNewBlock(1000, '1', '0');
 }
