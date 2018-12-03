@@ -32,6 +32,33 @@ app.post("/transaction", function (req, res) {
     
 });
 
+app.post('/transaction/broadcast', function(req, res){
+
+    //    create a new transaction 
+    const newTransaction = bitcoin.createNewTransaction(req.body.amount, req.body.sender, req.body.recipient);
+    
+    bitcoin.addTransactionToPendingTransactions(newTransaction);
+    // Broadcast to all nodes
+    const requestPromises = [];
+    bitcoin.networkNodes.forEach(networkNodeUrl => {
+        const requestOptions = {
+            uri: networkNodeUrl + '/transaction',
+            method: "POST",
+            body: newTransaction,
+            json: true
+        };
+
+        requestPromises.push(rp(requestOptions));
+    });
+
+    Promise.all(requestPromises).then( data => {
+
+        res.json({
+            note: 'Transaction Created and Broadcasted Successfully.'
+        })
+    });
+});
+
 // Endppint to mine a new block
 app.get("/mine", function (req, res) {
 
@@ -78,7 +105,7 @@ app.get("/mine", function (req, res) {
 
 // Register and Broadcast the node to the entire network
 app.post('/register-and-broadcast-node', function(req, res){ 
-    // The new Node url 
+    // The new Node url that will be added to the network
     const newNodeUrl = req.body.newNodeUrl;
     // Pushing the new Node to the networkNodes if it's not there
     if (bitcoin.networkNodes.indexOf(newNodeUrl) == -1) bitcoin.networkNodes.push(newNodeUrl);
@@ -86,7 +113,7 @@ app.post('/register-and-broadcast-node', function(req, res){
     const regNodesPromises = [];
     // Broadcast the new Node to all other Nodes
     bitcoin.networkNodes.forEach(networkNodeUrl => {
-        // hit '/register-node'
+        // hit '/register-node' and send 
         const requestOptions = {
             uri: networkNodeUrl + '/register-node',
             method: 'POST',

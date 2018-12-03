@@ -1,6 +1,7 @@
 // Sha256 npm For Hashing
 
 const sha256 = require("sha256");
+const uuid = require('uuid/v1');
 const currentNodeUrl = process.argv[3];
 
 // Building the Blockchain Constructor Function
@@ -60,16 +61,19 @@ Blockchain.prototype.createNewTransaction = function (amount, sender, recipient)
     const newTransaction = {
         amount: amount,
         sender: sender,
-        recipient: recipient
+        recipient: recipient,
+        transactionId: uuid().split('-').join('')
     };
 
-    // Pushing the new transaction created to the pending transactions
-    this.pendingTransactions.push(newTransaction);
-
-    // console.log(this.getLastBlock()['index'] + 1)
-    // Returning the index where the transactions will be found
-    return this.getLastBlock()['index'] + 1;
+  return newTransaction;
 }
+
+Blockchain.prototype.addTransactionToPendingTransactions = function(transactionObj){
+
+    this.pendingTransactions.push(transactionObj);
+
+    return this.getLastBlock().index + 1
+};
 
 // prototype function for hashing a block by concatenating 3 params into a string and the hashing the string
 Blockchain.prototype.hashBlock = function (previousBlockHash, currentBlockData, nonce) {
