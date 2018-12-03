@@ -18,18 +18,21 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // fetching all the blockchain 
 app.get("/blockchain", function (req, res) {
-    console.log('test')
+    // console.log('test')
     // Sending the bitcoin
     res.send(bitcoin);
-    console.log(nodeAddress)
+    // console.log(nodeAddress)
 });
 
 // Endpoint to create a new transaction
 app.post("/transaction", function (req, res) {
-    // Creating the transaction from the browser
-    const blockIndex = bitcoin.createNewTransaction(req.body.amount, req.body.sender, req.body.recipient);
-    res.json({ note: `Transaction will be added in block ${blockIndex}. ` });
+    // Adding the transaction to 
+    const newTransaction = req.body;
+    const blockIndex = bitcoin.addTransactionToPendingTransactions(newTransaction);
     
+    res.json({
+        note: `Transaction will be added in block ${blockIndex}`
+    })
 });
 
 app.post('/transaction/broadcast', function(req, res){
