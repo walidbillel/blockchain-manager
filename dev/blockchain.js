@@ -124,7 +124,7 @@ Blockchain.prototype.chainIsValid = function(blockchain) {
 
     const genesisBlock = blockchain[0];
     const correctNonce = genesisBlock.nonce === 1000;
-    const correctPrevBlockHash = genesisBlock.previousBlock === '1';
+    const correctPrevBlockHash = genesisBlock.previousBlockHash === '1';
     const correctHash = genesisBlock.hash === '0';
     const correctTransactions = genesisBlock.transactions.length === 0;
 
