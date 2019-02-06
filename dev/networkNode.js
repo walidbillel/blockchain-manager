@@ -270,9 +270,9 @@ app.get("/consensus", function(req, res) {
       bitcoin.pendingTransactions = newPendingTransactions;
       res.json({
         note: 'This chain has been replaced',
-        chain: bitcoin.chain;
-      })
-    }
+        chain: bitcoin.chain
+      });
+    };
   });
 });
 
