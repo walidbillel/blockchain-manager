@@ -7,7 +7,7 @@ const currentNodeUrl = process.argv[3];
 // Building the Blockchain Constructor Function
 function Blockchain() {
 
-
+    // Prototype
     this.chain = [];
     this.pendingTransactions = [];
     // The current url the blockchain is on
