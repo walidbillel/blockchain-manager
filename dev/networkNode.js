@@ -66,7 +66,7 @@ app.post("/transaction/broadcast", function(req, res) {
   });
 });
 
-// Endppint to mine a new block
+// Endppint to mine a new block..
 app.get("/mine", function(req, res) {
   // To mine a block we need to create a new block
   // We need to find our params
